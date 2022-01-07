@@ -1,6 +1,7 @@
 #ifndef EVENTLOOP_H_
 #define EVENTLOOP_H_
 
+#include "event.h"
 #include "util/ds.h"
 #include <pthread.h>
 
@@ -13,15 +14,6 @@ struct evl_state {
   // Lock for event list
   pthread_mutex_t evl_evlist_lock;
   // Linked Hash table of events
-};
-
-struct event {
-  // Name
-  char *name;
-  // List of functions to run
-  llnode_t *functions_list;
-  // Event trigger
-  // TODO
 };
 
 struct evl_state evl_create();

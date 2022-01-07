@@ -5,9 +5,9 @@ CFLAGS ?= -g -O0
 
 INCLUDE ?= -I./include
 
-LDFLAGS ?= -pthreads
+LDFLAGS ?= -pthread
 
-SRC_FILES = $(wildcard ./src/*.c)
+SRC_FILES = $(shell find ./src/ -type f -name "*.c")
 SRC_DIRS = $(shell find ./src/ -type d)
 
 OBJ_FILES = $(patsubst %.c, %.o, $(patsubst ./src/%, ./build/obj/%, $(SRC_FILES)))
@@ -20,7 +20,7 @@ BIN_NAME = edenv
 all: build_dirs build
 
 build: $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(INCLUDE) $(LDFLAGS) -o $(BIN_NAME) $<
+	$(CC) $(CFLAGS) $(INCLUDE) $(LDFLAGS) -o ./build/bin/$(BIN_NAME) $(OBJ_FILES)
 
 ./build/obj/%.o: ./src/%.c
 	echo Building $< ...

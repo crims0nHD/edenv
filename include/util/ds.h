@@ -19,14 +19,9 @@ typedef struct linked_hash_table_key_value_pair {
   void *value;
 } lht_kvpair_t;
 
-typedef struct linked_hash_table_entry {
-  unsigned int index;
-  llnode_t *entry_list;
-} lht_entry_t;
-
 typedef struct linked_hash_table {
   unsigned int length;
-  lht_entry_t **entries;
+  llnode_t **entries;
 } lht_t;
 
 unsigned int lht_hash_function(const char *str, const unsigned int length);
@@ -35,7 +30,7 @@ lht_t *lhtable_create(unsigned int length);
 void lhtable_delete(lht_t *table);
 
 void *lhtable_get_entry(const char *str, lht_t *lht);
-int lhtable_set_entry(const char *str, const void *val, lht_t *lht);
+void lhtable_set_entry(const char *str, void *val, lht_t *lht);
 int lhtable_delete_entry(const char *str, lht_t *lht);
 
 #endif // DS_H_
